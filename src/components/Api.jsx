@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
 const API = "https://jsonplaceholder.typicode.com/users";
+const ApiPlayers = "https://soccer-backend.onrender.com/api/jugadores/kevin";
 
 const Api = () => {
   const [data, setData] = useState([]);
   const [isLoaded, setIsLoaded] = useState(false);
+  const [players, setPlayers] = useState([]);
+  const [arePlayersLoaded, setArePlayersLoaded] = useState(false);
 
   //Aquí vamos a trabar código de JS - Asymc / Await
   const getDataApi = async () => {
@@ -23,8 +26,20 @@ const Api = () => {
     }
   };
 
+  const getPlayers = async () => {
+    try {
+      const response = await fetch(ApiPlayers);
+      const data = await response.json();
+      setPlayers(data.players);
+      setArePlayersLoaded(true);
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
   useEffect(() => {
     getDataApi();
+    getPlayers();
   }, []);
 
   return (
@@ -45,6 +60,17 @@ const Api = () => {
           <h1>Cargando...</h1>
         )
       }
+      {arePlayersLoaded ? (
+        players.map((player) => {
+          return (
+            <div key={player.id}>
+              <h3>{player.playerName}</h3>
+            </div>
+          );
+        })
+      ) : (
+        <h1>Cargando...</h1>
+      )}
     </>
   );
 };
