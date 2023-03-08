@@ -29,14 +29,22 @@ const Api = () => {
 
   return (
     <>
-      {isLoaded ? (
-        data.map(() => {
-          return <h1>Hola</h1>;
-        })
-      ) : (
-        <h1>Cargando información de la API</h1>
-      )}
-      <h1>Componente API</h1>
+      {
+        //Si isLoading es true mostramos el loader
+        isLoaded ? (
+          data.map((informacion) => {
+            return (
+              <div key={informacion.id}>
+                <h3>{informacion.name}</h3>
+                <h3>{informacion.phone}</h3>
+                <hr></hr>
+              </div>
+            );
+          })
+        ) : (
+          <h1>Cargando...</h1>
+        )
+      }
     </>
   );
 };
