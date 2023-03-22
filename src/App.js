@@ -1,5 +1,4 @@
 import React from "react";
-import Api from "./components/Api";
 import Cards from "./components/Cards";
 import MenuBar from "./components/MenuBar";
 
