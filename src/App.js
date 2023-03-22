@@ -1,5 +1,7 @@
 import React from "react";
 import Api from "./components/Api";
+import Cards from "./components/Cards";
+import MenuBar from "./components/MenuBar";
 
 //Vamos a crear el una función para consumir nuestra API local
 
@@ -8,9 +10,8 @@ import Api from "./components/Api";
 const App = () => {
   return (
     <>
-      {/* Vamos a trar los datos de los jugadores en tarjetas */}
-      <div>App</div>
-      <Api />
+      <MenuBar />
+      <Cards />
     </>
   );
 };
