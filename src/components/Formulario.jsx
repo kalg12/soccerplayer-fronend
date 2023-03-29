@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-const axios = require("axios");
+import axios from "axios";
 const API_URL = "https://soccer-backend.onrender.com/api/jugadores/kevin";
 
 const formularioInicio = {
@@ -10,9 +10,27 @@ const formularioInicio = {
 const Formulario = () => {
   const [formulario, setFormulario] = useState(formularioInicio);
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setFormulario({ ...formulario, [name]: value });
+  const handleChange = (e) => {
+    setFormulario({
+      ...formulario,
+      [e.target.name]: e.target.value,
+    });
+  };
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    try {
+      axios
+        .post(API_URL, formulario)
+        .then((response) => {
+          console.log(response);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (
